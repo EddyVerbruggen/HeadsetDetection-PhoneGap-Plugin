@@ -1,6 +1,6 @@
-# HeadSetDetection-PhoneGap-Plugin
+# HeadsetDetection-PhoneGap-Plugin
 
-by [Eddy Verbruggen](http://www.x-services.nl)
+by [Eddy Verbruggen](http://www.x-services.nl) / [@eddyverbruggen](http://www.twitter.com/eddyverbruggen)
 
 1. [Description](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#1-description)
 2. [Installation](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#2-installation)
