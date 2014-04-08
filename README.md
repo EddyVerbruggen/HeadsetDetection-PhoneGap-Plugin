@@ -79,6 +79,7 @@ The required javascript file is brought in automatically. There is no need to ch
 ```html
 <button onclick="window.plugins.headsetdetection.detect(function(detected) {alert(detected)})">headphone detected?</button>
 ```
+The successCallback (first argument) is a boolean (true or false). Couldn't be easier :)
 
 ## 4. CREDITS ##
 
