@@ -1,4 +1,5 @@
-HeadsetDetection-PhoneGap-Plugin
-================================
+# HeadSetDetection-PhoneGap-Plugin
 
-A PhoneGap plugin for detection of a headset (wired or bluetooth)
+by [Eddy Verbruggen](http://www.x-services.nl)
+
+##April 8th 2014: This plugin is under construction, please don't use yet
