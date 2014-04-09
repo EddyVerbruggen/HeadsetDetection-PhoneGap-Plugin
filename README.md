@@ -56,7 +56,7 @@ $ cordova prepare
 
 3\. Download the source files for iOS and/or Android and copy them to your project.
 
-iOS: Copy `HeadsetDetection.h` and `HeadsetDetection.h` to `platforms/ios/<ProjectName>/Plugins`
+iOS: Copy `HeadsetDetection.h` and `HeadsetDetection.m` to `platforms/ios/<ProjectName>/Plugins`
 
 Android: Copy `HeadsetDetection.java` to `platforms/android/src/nl/xservices/plugins` (create the folders)
 
