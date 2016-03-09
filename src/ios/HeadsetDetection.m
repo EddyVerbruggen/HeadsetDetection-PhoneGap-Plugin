@@ -1,12 +1,10 @@
 #import "HeadsetDetection.h"
-#import <Cordova/CDV.h>
 
 @implementation HeadsetDetection
 
 - (void) detect:(CDVInvokedUrlCommand*)command {
-  NSString *callbackId = command.callbackId;
-  CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:[self isHeadsetEnabled]];
-  [self writeJavascript:[result toSuccessCallbackString:callbackId]];
+  CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:[self isHeadsetEnabled]];
+  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (BOOL) isHeadsetEnabled {

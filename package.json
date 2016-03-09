@@ -1,0 +1,31 @@
+{
+  "name": "cordova-plugin-headsetdetection",
+  "version": "2.0.0",
+  "description": "Detect a wired or Bluetooth headset",
+  "cordova": {
+    "id": "cordova-plugin-headsetdetection",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin.git"
+  },
+  "keywords": [
+    "cordova",
+    "bluetooth",
+    "headset",
+    "headset detection",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "author": "Eddy Verbruggen <eddyverbruggen@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin/issues"
+  },
+  "homepage": "https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#readme"
+}

@@ -5,7 +5,6 @@ by [Eddy Verbruggen](http://www.x-services.nl) / [@eddyverbruggen](http://www.tw
 1. [Description](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#1-description)
 2. [Installation](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#2-installation)
 	2. [Automatically (CLI / Plugman)](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#automatically-cli--plugman)
-	2. [Manually](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#manually)
 	2. [PhoneGap Build](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#phonegap-build)
 3. [Usage](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#3-usage)
 4. [Credits](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#4-credits)
@@ -23,54 +22,19 @@ Detect a wired or wireless (Bluetooth) headset, connected to you phone.
 ### Automatically (CLI / Plugman)
 HeadsetDetection is compatible with [Cordova Plugman](https://github.com/apache/cordova-plugman) and the PhoneGap and Cordova CLI:
 
-PhoneGap CLI:
-```
-$ phonegap local plugin add https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin.git
-```
 Cordova CLI:
+
 ```
-$ cordova plugin add https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin.git
+$ cordova plugin add cordova-plugin-headsetdetection
 $ cordova prepare
-```
-
-### Manually
-
-1\. Add the following xml to your `config.xml` in the root directory of your `www` folder:
-```xml
-<!-- for iOS -->
-<feature name="HeadsetDetection">
-  <param name="ios-package" value="HeadsetDetection" />
-</feature>
-```
-```xml
-<!-- for Android -->
-<feature name="HeadsetDetection">
-  <param name="android-package" value="nl.xservices.plugins.HeadsetDetection" />
-</feature>
-```
-
-2\. Grab a copy of HeadsetDetection.js, add it to your project and reference it in `index.html`:
-```html
-<script type="text/javascript" src="js/HeadsetDetection.js"></script>
-```
-
-3\. Download the source files for iOS and/or Android and copy them to your project.
-
-iOS: Copy `HeadsetDetection.h` and `HeadsetDetection.m` to `platforms/ios/<ProjectName>/Plugins`
-
-Android: Copy `HeadsetDetection.java` to `platforms/android/src/nl/xservices/plugins` (create the folders)
-
-4\. For most Android devices you need to add a permission to `AndroidManifest.xml`:
-```xml
-<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
 ```
 
 ### PhoneGap Build
 
-HeadsetDetection will soon work with PhoneGap build too (submitted for review on April 8th 2014).
-Just add the following xml to your `config.xml` to always use the latest version of this plugin:
+HeadsetDetection works with PhoneGap build too, just add the following xml to your `config.xml` to always use the latest version of this plugin:
+
 ```xml
-<gap:plugin name="nl.x-services.plugins.headsetdetection" />
+<plugin name="cordova-plugin-headsetdetection" source="npm"/>
 ```
 
 The required javascript file is brought in automatically. There is no need to change or add anything in your html.
