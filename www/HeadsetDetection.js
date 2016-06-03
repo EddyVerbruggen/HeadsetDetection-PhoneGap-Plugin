@@ -1,17 +1,18 @@
-function HeadsetDetection() {
-}
+cordova.define("cordova-plugin-headsetdetection.HeadsetDetection", function(require, exports, module) {
+  var HeadsetDetection = {
+    detect: function (successCallback, errorCallback) {
+      cordova.exec(successCallback, errorCallback, "HeadsetDetection", "detect", []);
+    },
+    registerRemoteEvents: function(actionCallback) {
+      this.actionCallback = actionCallback;
+    },
+    remoteHeadsetRemoved: function() {
+      this.actionCallback && this.actionCallback('headsetRemove');
+    },
+    remoteHeadsetAdded: function() {
+      this.actionCallback && this.actionCallback('headsetAdded');
+    }
+  };
 
-HeadsetDetection.prototype.detect = function (successCallback, errorCallback) {
-  cordova.exec(successCallback, errorCallback, "HeadsetDetection", "detect", []);
-};
-
-HeadsetDetection.install = function () {
-  if (!window.plugins) {
-    window.plugins = {};
-  }
-
-  window.plugins.headsetdetection = new HeadsetDetection();
-  return window.plugins.headsetdetection;
-};
-
-cordova.addConstructor(HeadsetDetection.install);
+  module.exports = HeadsetDetection;
+});
