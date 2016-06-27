@@ -50,7 +50,7 @@ The successCallback (first argument) is a boolean (true or false). Couldn't be e
 If you need to respond to removal or added headset while your app i running, you can use the `HeadsetDetection.registerRemoteEvents` function and listen for either `headsetAdded` or `headsetRemove`:
 
 ```js
-HeadsetDetection.registerRemoteEvents(function(status) {
+window.HeadsetDetection.registerRemoteEvents(function(status) {
   switch(status) {
     case 'headsetAdded':
       console.log('Headset was added');
@@ -58,8 +58,8 @@ HeadsetDetection.registerRemoteEvents(function(status) {
     case 'headsetRemove':
       console.log('Headset was removed');
       break;
-  }
-})
+  };
+});
 ```
 
 ## 4. CREDITS ##
