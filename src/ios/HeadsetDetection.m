@@ -21,6 +21,10 @@
   [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+- (void) registerRemoteEvents:(CDVInvokedUrlCommand*)command {
+  // no implementation needed
+}
+
 - (BOOL) isHeadsetEnabled {
   AVAudioSessionRouteDescription* route = [[AVAudioSession sharedInstance] currentRoute];
   for (AVAudioSessionPortDescription* desc in [route outputs]) {

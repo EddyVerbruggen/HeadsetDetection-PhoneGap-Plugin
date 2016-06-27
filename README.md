@@ -47,24 +47,28 @@ The successCallback (first argument) is a boolean (true or false). Couldn't be e
 
 ### 3.1 Usage with event-based detection
 
-If you need to respond to removal or added headset while your app i running, you can use the `HeadsetDetection.registerRemoteEvents` function and listen for either `headsetAdded` or `headsetRemove`:
+If you need to respond to removal or added headset while your app i running, you can use the `HeadsetDetection.registerRemoteEvents` function and listen for either `headsetAdded` or `headsetRemoved`:
 
 ```js
-window.HeadsetDetection.registerRemoteEvents(function(status) {
-  switch(status) {
-    case 'headsetAdded':
-      console.log('Headset was added');
-      break;
-    case 'headsetRemove':
-      console.log('Headset was removed');
-      break;
-  };
-});
+document.addEventListener('deviceready', function() {
+    window.HeadsetDetection.registerRemoteEvents(function(status) {
+        switch (status) {
+            case 'headsetAdded':
+                alert('Headset was added');
+            break;
+            case 'headsetRemoved':
+                alert('Headset was removed');
+            break;
+        };
+    });
+}, false);
 ```
 
 ## 4. CREDITS ##
 
 This plugin was created by and enhanced for Plugman / PhoneGap Build by [Eddy Verbruggen](http://www.x-services.nl).
+
+The awesome `registerRemoteEvents` function was added by [Gerhard Sletten](https://github.com/gerhardsletten).
 
 ## 5. License
 
