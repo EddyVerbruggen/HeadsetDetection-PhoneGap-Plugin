@@ -1,17 +1,20 @@
-function HeadsetDetection() {
-}
+var exec = require('cordova/exec');
 
-HeadsetDetection.prototype.detect = function (successCallback, errorCallback) {
-  cordova.exec(successCallback, errorCallback, "HeadsetDetection", "detect", []);
-};
-
-HeadsetDetection.install = function () {
-  if (!window.plugins) {
-    window.plugins = {};
+var HeadsetDetection = {
+  detect: function (successCallback, errorCallback) {
+    exec(successCallback, errorCallback, "HeadsetDetection", "detect", []);
+  },
+  registerRemoteEvents: function(actionCallback) {
+    // Need to call a native function to start recieve events on android
+    exec(null, null, "HeadsetDetection", "registerRemoteEvents", []);
+    this.actionCallback = actionCallback;
+  },
+  remoteHeadsetRemoved: function() {
+    this.actionCallback && this.actionCallback('headsetRemove');
+  },
+  remoteHeadsetAdded: function() {
+    this.actionCallback && this.actionCallback('headsetAdded');
   }
-
-  window.plugins.headsetdetection = new HeadsetDetection();
-  return window.plugins.headsetdetection;
 };
 
-cordova.addConstructor(HeadsetDetection.install);
+module.exports = HeadsetDetection;

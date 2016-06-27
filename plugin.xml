@@ -15,7 +15,7 @@
   </engines>
 
   <js-module src="www/HeadsetDetection.js" name="HeadsetDetection">
-    <clobbers target="window.plugins.headsetdetection" />
+    <clobbers target="window.HeadsetDetection" />
   </js-module>
 
   <!-- ios -->
@@ -24,6 +24,7 @@
     <config-file target="config.xml" parent="/*">
       <feature name="HeadsetDetection">
         <param name="ios-package" value="HeadsetDetection"/>
+        <param name="onload" value="true" />
       </feature>
     </config-file>
 
