@@ -5,6 +5,8 @@ var HeadsetDetection = {
     exec(successCallback, errorCallback, "HeadsetDetection", "detect", []);
   },
   registerRemoteEvents: function(actionCallback) {
+    // Need to call a native function to start recieve events on android
+    exec(null, null, "HeadsetDetection", "registerRemoteEvents", []);
     this.actionCallback = actionCallback;
   },
   remoteHeadsetRemoved: function() {
