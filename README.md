@@ -4,8 +4,6 @@ by [Eddy Verbruggen](http://www.x-services.nl) / [@eddyverbruggen](http://www.tw
 
 1. [Description](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#1-description)
 2. [Installation](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#2-installation)
-	2. [Automatically (CLI / Plugman)](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#automatically-cli--plugman)
-	2. [PhoneGap Build](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#phonegap-build)
 3. [Usage](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#3-usage)
 4. [Credits](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#4-credits)
 5. [License](https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin#5-license)
@@ -18,26 +16,10 @@ Detect a wired or wireless (Bluetooth) headset, connected to you phone.
 * Works on iOS 6+
 
 ## 2. Installation
-
-### Automatically (CLI / Plugman)
-HeadsetDetection is compatible with [Cordova Plugman](https://github.com/apache/cordova-plugman) and the PhoneGap and Cordova CLI:
-
-Cordova CLI:
-
-```
+```bash
 $ cordova plugin add cordova-plugin-headsetdetection
 $ cordova prepare
 ```
-
-### PhoneGap Build
-
-HeadsetDetection works with PhoneGap build too, just add the following xml to your `config.xml` to always use the latest version of this plugin:
-
-```xml
-<plugin name="cordova-plugin-headsetdetection" source="npm"/>
-```
-
-The required javascript file is brought in automatically. There is no need to change or add anything in your html.
 
 ## 3. Usage
 ```html
@@ -48,6 +30,8 @@ The successCallback (first argument) is a boolean (true or false). Couldn't be e
 ### 3.1 Usage with event-based detection
 
 If you need to respond to removal or added headset while your app i running, you can use the `HeadsetDetection.registerRemoteEvents` function and listen for either `headsetAdded` or `headsetRemoved`:
+
+Note that changes to the Bluetooth headset state on Android are not supported currently. So on Android you'll only get an event when a wired headset is disconnected. On iOS for both wired and Bluetooth headsets. I only recently figured out this glitch when creating the [NativeScript Headset Detection plugin](https://github.com/EddyVerbruggen/nativescript-headset-detection), which does support this feature on Android.
 
 ```js
 document.addEventListener('deviceready', function() {
