@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        id="cordova-plugin-headsetdetection"
-        version="3.0.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+  xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-headsetdetection" version="3.0.0">
 
   <name>Headset Detection</name>
 
@@ -42,6 +40,7 @@
     </config-file>
 
     <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.BLUETOOTH" />
       <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     </config-file>
 
