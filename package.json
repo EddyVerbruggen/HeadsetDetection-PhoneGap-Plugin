@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EddyVerbruggen/HeadsetDetection-PhoneGap-Plugin.git"
+    "url": "git+https://github.com/RamseyInHouse/HeadsetDetection-PhoneGap-Plugin.git"
   },
   "keywords": [
     "cordova",

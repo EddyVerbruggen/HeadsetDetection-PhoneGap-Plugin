@@ -6,6 +6,7 @@ import org.apache.cordova.PluginResult;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaWebView;
 
+import android.bluetooth.BluetoothHeadset;
 import android.content.Context;
 import android.media.AudioManager;
 import android.content.Intent;
@@ -23,6 +24,9 @@ public class HeadsetDetection extends CordovaPlugin {
 
   private static final String ACTION_DETECT = "detect";
   private static final String ACTION_EVENT = "registerRemoteEvents";
+  private static final int DEFAULT_STATE = -1;
+  private static final int DISCONNECTED = 0;
+  private static final int CONNECTED = 1;
   protected static CordovaWebView mCachedWebView = null;
 
   BroadcastReceiver receiver;
@@ -37,23 +41,20 @@ public class HeadsetDetection extends CordovaPlugin {
       mCachedWebView = webView;
       IntentFilter intentFilter = new IntentFilter();
       intentFilter.addAction(Intent.ACTION_HEADSET_PLUG);
+      intentFilter.addAction(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED);
       this.receiver = new BroadcastReceiver() {
           @Override
           public void onReceive(Context context, Intent intent) {
-              if (intent.getAction().equals(Intent.ACTION_HEADSET_PLUG)) {
-                  int state = intent.getIntExtra("state", -1);
-                  switch (state) {
-                  case 0:
-                      Log.d(LOG_TAG, "Headset is unplugged");
-                      mCachedWebView.sendJavascript("cordova.require('cordova-plugin-headsetdetection.HeadsetDetection').remoteHeadsetRemoved();");
-                      break;
-                  case 1:
-                      Log.d(LOG_TAG, "Headset is plugged");
-                      mCachedWebView.sendJavascript("cordova.require('cordova-plugin-headsetdetection.HeadsetDetection').remoteHeadsetAdded();");
-                      break;
-                  default:
-                      Log.d(LOG_TAG, "I have no idea what the headset state is");
-                  }
+              int status = getConnectionStatus(intent.getAction(), intent);
+
+              if (status == CONNECTED) {
+                Log.d(LOG_TAG, "Headset is connected");
+                mCachedWebView.sendJavascript("cordova.require('cordova-plugin-headsetdetection.HeadsetDetection').remoteHeadsetAdded();");
+              } else if (status == DISCONNECTED) {
+                Log.d(LOG_TAG, "Headset is disconnected");
+                mCachedWebView.sendJavascript("cordova.require('cordova-plugin-headsetdetection.HeadsetDetection').remoteHeadsetRemoved();");
+              } else {
+                Log.d(LOG_TAG, "Headset state is unknown: " + status);
               }
           }
       };
@@ -89,6 +90,24 @@ public class HeadsetDetection extends CordovaPlugin {
 
   public void onReset() {
       removeHeadsetListener();
+  }
+
+  private int getConnectionStatus(String action, Intent intent) {
+      int state = DEFAULT_STATE;
+      int normalizedState = DEFAULT_STATE;
+      if (action.equals(Intent.ACTION_HEADSET_PLUG)) {
+        state = intent.getIntExtra("state", DEFAULT_STATE);
+      } else if (action.equals(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED)) {
+        state = intent.getIntExtra(BluetoothHeadset.EXTRA_STATE, DEFAULT_STATE);
+      }
+
+      if ((state == 1 && action.equals(Intent.ACTION_HEADSET_PLUG)) || (state == 2 && action.equals(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED))) {
+          normalizedState = CONNECTED;
+      } else if (state == 0) {
+          normalizedState = DISCONNECTED;
+      }
+
+      return normalizedState;
   }
 
   private void removeHeadsetListener() {

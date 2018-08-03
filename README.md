@@ -31,8 +31,6 @@ The successCallback (first argument) is a boolean (true or false). Couldn't be e
 
 If you need to respond to removal or added headset while your app i running, you can use the `HeadsetDetection.registerRemoteEvents` function and listen for either `headsetAdded` or `headsetRemoved`:
 
-Note that changes to the Bluetooth headset state on Android are not supported currently. So on Android you'll only get an event when a wired headset is disconnected. On iOS for both wired and Bluetooth headsets. I only recently figured out this glitch when creating the [NativeScript Headset Detection plugin](https://github.com/EddyVerbruggen/nativescript-headset-detection), which does support this feature on Android.
-
 ```js
 document.addEventListener('deviceready', function() {
     window.HeadsetDetection.registerRemoteEvents(function(status) {
