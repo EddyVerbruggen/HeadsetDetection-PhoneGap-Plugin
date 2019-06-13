@@ -78,9 +78,9 @@ public class HeadsetDetection extends CordovaPlugin {
 
   private boolean isHeadsetEnabled() {
     final AudioManager audioManager = (AudioManager) cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
-    return audioManager.isWiredHeadsetOn() ||
-        audioManager.isBluetoothA2dpOn() ||
-        audioManager.isBluetoothScoOn();
+    return audioManager.isWiredHeadsetOn();
+      // audioManager.isBluetoothA2dpOn() ||
+      // audioManager.isBluetoothScoOn();
   }
 
   public void onDestroy() {
